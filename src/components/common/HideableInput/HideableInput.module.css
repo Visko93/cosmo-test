@@ -1,0 +1,58 @@
+@keyframes icon-arrow {
+  0% {
+    opacity: 0;
+    transform: rotate(180deg);
+  }
+
+  to {
+    opacity: 100%;
+    transform: rotate(0deg);
+  }
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  background-color: hsl(var(--c-gray));
+  max-width: 80ch;
+  padding: 2em 1em;
+  top: 10em;
+
+  overflow: hidden;
+
+  border-radius: 0 1em 1em 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 200ms ease-out;
+
+  z-index: 10;
+}
+
+.colapsed {
+  max-width: 10ch;
+
+  transition: all 200ms ease-in;
+  z-index: 10;
+}
+
+.colapsed svg {
+  animation: icon-arrow forwards ease-in 300ms;
+}
+
+.input {
+  flex: 1;
+  margin-right: 2em;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 45ch;
+    padding: 1em 1em;
+  }
+
+  .colapsed {
+    max-width: 8ch;
+  }
+}

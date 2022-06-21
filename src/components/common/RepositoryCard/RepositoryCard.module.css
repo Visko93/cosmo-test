@@ -1,0 +1,29 @@
+.card {
+  height: 244px;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: var(--grad-primary);
+  box-shadow: 0px 0px 10px #18dffb;
+  backdrop-filter: blur(30%);
+  /* Note: backdrop-filter has minimal browser support */
+
+  border-radius: 2em;
+  padding: 1em 2em;
+}
+
+.card-header {
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-footer {
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+
+.language {
+  font-weight: 600;
+  font-size: var(--fs-500);
+}

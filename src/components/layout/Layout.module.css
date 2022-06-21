@@ -1,0 +1,20 @@
+.constainer {
+  max-width: 1600px;
+}
+
+.header {
+  width: 100%;
+  background-color: hsl(var(--c-white) / 0.3);
+
+  padding: 0.5em 0;
+
+  display: flex;
+  justify-content: center;
+
+  font-size: var(--fs-600);
+}
+
+.link {
+  color: hsl(var(--c-white));
+  text-decoration: none;
+}

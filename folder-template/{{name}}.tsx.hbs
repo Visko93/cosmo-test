@@ -1,0 +1,14 @@
+import * as React from "react"
+import styles from "./{{name}}.module.css"
+
+import type { I{{name}} } from "./I{{ name }}.types"
+
+function {{name}}({props}: I{{ name }}) {
+	return (
+    	<div className={styles.div}>
+        <h1>{{name}}</h1>
+      </div>
+    )
+}
+
+export { {{name}} }

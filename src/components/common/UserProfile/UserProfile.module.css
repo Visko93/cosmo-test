@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+
+  padding: 2em 2em 0 15ch;
+
+  display: flex;
+  justify-content: space-between;
+
+  z-index: 1;
+}
+
+.avatar-wrapper {
+  width: 160px;
+  height: 160px;
+  overflow: hidden;
+
+  border-radius: 50%;
+}
+
+.avatar-image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.details-container {
+  width: 100%;
+}

@@ -1,0 +1,13 @@
+.button {
+  display: inline-block;
+  background-image: var(--grad-primary);
+  color: var(--c-white);
+
+  cursor: pointer;
+  outline: none;
+  border: none;
+
+  border-radius: 4px;
+
+  padding: 0.35em 0.75em;
+}

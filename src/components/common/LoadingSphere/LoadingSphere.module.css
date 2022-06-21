@@ -1,0 +1,53 @@
+.container {
+  justify-content: center;
+  text-align: center;
+  padding-top: 2em;
+}
+
+.sphere {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  margin-top: 2em;
+
+  border-radius: 50%;
+
+  background-image: var(--grad-primary);
+}
+
+.sphere::before {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 110%;
+
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+
+  border-radius: 50%;
+  background-color: hsl(var(--c-white) / 0.15);
+}
+
+@media (max-width: 768px) {
+  .sphere {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin-top: 2em;
+
+    border-radius: 50%;
+
+    background-image: var(--grad-primary);
+  }
+}
+
+@keyframes loader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: loader infinite forwards 1.2s steps(60);
+}
