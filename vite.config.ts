@@ -1,3 +1,6 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import react from "@vitejs/plugin-react";
 import Icons from "unplugin-icons/vite";
@@ -14,8 +17,9 @@ export default defineConfig({
     }),
     splitVendorChunkPlugin(),
   ],
-
-  build: {
-    manifest: true,
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.ts",
   },
 });
