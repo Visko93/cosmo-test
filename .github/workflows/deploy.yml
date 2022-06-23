@@ -1,40 +1,37 @@
-name: Cosmo Test Project
+name: Build and deploy main
 
 on:
   push:
     branches: [main]
-  # Caso precise rodar a action manualmente
-  workflow_dispatch:
 
 jobs:
-  deploy:
-    runs-on: ubuntu-20.04
-
-    permissions:
-      contents: write
+  build:
+    name: Build and deploy main
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Check out your repository using git
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.5
 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
+      - name: Cache node modules
+        uses: actions/cache@v2
         with:
-          node-version: 16
+          path: ~/node_modules
+          key: cache-${{ hashFiles('**/package-lock.json') }}
 
-      - name: Install dependencies
-        run: yarn ci
-
-      - name: Build Project
+      # pass --base for application to work under GitHub pages
+      - name: Install and build
         run: |
-          cd page
-          yarn install --frozen-lockfile
-          yarn build
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+          npm install
+          npm run build -- --base=/${{ github.event.repository.name }}/
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          github_token: ${{ secrets.VITE_GITHUB_ACCESS_TOKEN }}
-          publish_dir: ./dist
-          branch: gh-pages # The branch the action should deploy to.
-          folder: page/build # The folder the action should deploy.
+          branch: gh-pages
+          folder: dist
+
+      - name: Publish deployed code
+        uses: actions/upload-artifact@v2
+        with:
+          name: published
+          path: dist
