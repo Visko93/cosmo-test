@@ -18,6 +18,11 @@
 
 ---
 
+## Rodar Localmente
+
+> E necessario criar um token
+> https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
+
 # Entrega
 
 [ ] O código possui algum controle de dependências?

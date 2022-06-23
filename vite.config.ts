@@ -17,9 +17,13 @@ export default defineConfig({
     }),
     splitVendorChunkPlugin(),
   ],
+  esbuild: {
+    logOverride: { "this-is-undefined-in-esm": "silent" },
+  },
   test: {
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/test/setup.ts",
   },
+  base: "/cosmo-test/",
 });

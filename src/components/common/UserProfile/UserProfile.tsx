@@ -7,6 +7,7 @@ import AccountSearch from "virtual:icons/mdi/account-search-outline";
 import FollowersIcon from "virtual:icons/mdi/account-multiple";
 import UserIcon from "virtual:icons/mdi/account-outline";
 import UserMarkerIcon from "virtual:icons/mdi/map-marker-account";
+
 import { AvatarPlaceholder } from "../../../assets/icons/avatarPlaceholder";
 import { ListItem } from "../../ui/atom/ListItem";
 import { List } from "../../ui/organisms/List";
