@@ -1,18 +1,15 @@
 name: Cosmo Test Project
 
 on:
-  # Trigger the workflow every time you push to the `main` branch
-  # Using a different branch name? Replace `main` with your branch’s name
   push:
     branches: [main]
-  # Allows you to run this workflow manually from the Actions tab on GitHub.
+  # Caso precise rodar a action manualmente
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-20.04
 
-    # Allow this job to push changes to your repository
     permissions:
       contents: write
 
@@ -25,17 +22,19 @@ jobs:
         with:
           node-version: 16
 
-      # Not using npm? Change `npm ci` to `yarn install` or `pnpm i`
       - name: Install dependencies
-        run: npm ci
+        run: yarn ci
 
       - name: Build Project
-        run: yarn run build
+        run: |
+          cd page
+          yarn install --frozen-lockfile
+          yarn build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.VITE_GITHUB_ACCESS_TOKEN }}
-          # `./dist` is the default Astro build directory.
-          # If you changed that, update it here too.
           publish_dir: ./dist
+          branch: gh-pages # The branch the action should deploy to.
+          folder: page/build # The folder the action should deploy.
