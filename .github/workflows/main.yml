@@ -2,7 +2,7 @@ name: Build and deploy main
 
 on:
   push:
-    branches: [main]
+    branches: [$default-branch]
 
 jobs:
   build:
@@ -10,20 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2.1.5
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/node_modules
           key: cache-${{ hashFiles('**/package-lock.json') }}
 
       # pass --base for application to work under GitHub pages
-      - name: Install and build
+      - name: Install, build and test
         run: |
-          npm install
-          npm run build -- --base=/${{ github.event.repository.name }}/
+          yarn -frozen-lockfile
+          yarn build --if-present
+          yarn test
+
       - name: Deploy to github pages
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
