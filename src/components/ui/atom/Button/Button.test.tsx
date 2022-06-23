@@ -1,14 +1,5 @@
-import * as React from "react";
 import { Button } from ".";
-import {
-  afterEach,
-  assert,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { fireEvent, render, screen } from "../../../../utils/testUtils";
 
 describe("Test for the Button component", () => {
@@ -23,6 +14,26 @@ describe("Test for the Button component", () => {
 
     const button = screen.getByText(/Test/i);
     expect(button).toHaveTextContent("Test");
+  });
+  it("Test Button with a text Child", async () => {
+    render(<Button onClick={() => {}}>Test</Button>);
+
+    const button = screen.getByText(/Test/i);
+    expect(button).toHaveTextContent("Test");
+  });
+
+  it("Should apply custom properties using rest properties", async () => {
+    render(
+      <Button onClick={() => {}} {...{ placeholder: "Test", disabled: true }}>
+        Test
+      </Button>
+    );
+
+    const buttonPlaceholder = screen.getByPlaceholderText(/Test/i);
+    expect(buttonPlaceholder).toHaveTextContent("Test");
+
+    const isDisablled = screen.getByText(/Test/i);
+    expect(isDisablled.ariaDisabled).toBeTruthy();
   });
 
   it("Fire event when button is clicked", async () => {

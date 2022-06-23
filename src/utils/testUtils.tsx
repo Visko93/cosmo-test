@@ -1,5 +1,5 @@
 /* eslint-disabled import/export */
-import { cleanup, render } from "@testing-library/react";
+import { cleanup, render, RenderOptions } from "@testing-library/react";
 import React from "react";
 import { afterEach } from "vitest";
 
@@ -8,7 +8,10 @@ afterEach(() => {
   cleanup();
 });
 
-const customRender = (ui: React.ReactElement, options = {}) => {
+const customRender = (
+  ui: React.ReactElement,
+  options: RenderOptions | {} = {}
+) => {
   render(ui, {
     //caso haja algum contexto especifico que o componente tenha de acessar //durante o teste ele e exposto aqui
     wrapper: ({ children }) => children,
