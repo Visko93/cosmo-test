@@ -9,6 +9,7 @@ import styles from "./RepositoryCard.module.css";
 import globalStyles from "../../../global/styles/global.module.css";
 
 import type { IRepositoryCard } from "./IRepositoryCard.types";
+import { formatDate } from "../../../utils/formatDate";
 
 function RepositoryCard({
   data: { language, stars, repoName, lastUpdated },
@@ -37,7 +38,7 @@ function RepositoryCard({
       </div>
       <div className={clsx([globalStyles.flex, styles["card-footer"]])}>
         <h4>{repoName}</h4>
-        <h5>{lastUpdated}</h5>
+        <h5>{formatDate(lastUpdated)}</h5>
       </div>
     </div>
   );

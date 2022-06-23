@@ -22,20 +22,6 @@ describe("Test for the Button component", () => {
     expect(button).toHaveTextContent("Test");
   });
 
-  it("Should apply custom properties using rest properties", async () => {
-    render(
-      <Button onClick={() => {}} {...{ placeholder: "Test", disabled: true }}>
-        Test
-      </Button>
-    );
-
-    const buttonPlaceholder = screen.getByPlaceholderText(/Test/i);
-    expect(buttonPlaceholder).toHaveTextContent("Test");
-
-    const isDisablled = screen.getByText(/Test/i);
-    expect(isDisablled.ariaDisabled).toBeTruthy();
-  });
-
   it("Fire event when button is clicked", async () => {
     const handleClick = vi.fn();
     render(<Button label="Test" onClick={handleClick} />);
@@ -43,5 +29,16 @@ describe("Test for the Button component", () => {
     const button = screen.getByRole("button", { name: /Test/i });
     fireEvent.click(button);
     expect(handleClick).toBeCalledTimes(1);
+  });
+  it("Should apply custom properties using rest properties", () => {
+    render(
+      <Button onClick={() => {}} placeholder="Test">
+        Test
+      </Button>
+    );
+
+    const buttonPlaceholder = screen.getByPlaceholderText(/Test/i);
+
+    expect(buttonPlaceholder).toHaveTextContent("Test");
   });
 });

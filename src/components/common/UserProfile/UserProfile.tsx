@@ -1,37 +1,20 @@
-import * as React from "react";
-
 import styles from "./UserProfile.module.css";
 import clsx from "clsx";
 import type { IUserProfile } from "./IUserProfile.types";
 import { IUser } from "../../../global/types/user";
-import globalStyles from "../../../global/styles/global.module.css";
 
 import AccountSearch from "virtual:icons/mdi/account-search-outline";
 import FollowersIcon from "virtual:icons/mdi/account-multiple";
 import UserIcon from "virtual:icons/mdi/account-outline";
 import UserMarkerIcon from "virtual:icons/mdi/map-marker-account";
 import { AvatarPlaceholder } from "../../../assets/icons/avatarPlaceholder";
+import { ListItem } from "../../ui/atom/ListItem";
+import { List } from "../../ui/organisms/List";
 
-const ListItem = ({
-  icon,
-  text,
-}: {
-  icon: React.SVGProps<SVGSVGElement>;
-  text: string | number | undefined;
-}) => (
-  <div className={clsx([globalStyles.flex])}>
-    <>
-      {!!icon ? icon : null}
-      <h5>{text ?? "Not found!"}</h5>
-    </>
-  </div>
-);
-
+// Abstracao pequena nao tem uma vantagem relevante criar um componente unico //para ele
 const DetailContainer = (userData: IUser) => {
   return (
-    <div style={{ zIndex: 2 }}>
-      <h1>{userData.name}</h1>
-      <small>{userData.login}</small>
+    <List title={userData.name} subtitle={userData.login} as="ul">
       <ListItem
         icon={<UserIcon style={{ fontSize: "1em", color: "white" }} />}
         text={`Name: ${userData?.name}`}
@@ -48,7 +31,7 @@ const DetailContainer = (userData: IUser) => {
         icon={<UserMarkerIcon style={{ fontSize: "1em", color: "white" }} />}
         text={`Location: ${userData?.location}`}
       />
-    </div>
+    </List>
   );
 };
 

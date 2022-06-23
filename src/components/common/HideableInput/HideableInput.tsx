@@ -23,7 +23,10 @@ function HideableInput({
   };
 
   return (
-    <div className={clsx([styles.container, collapsed && styles.colapsed])}>
+    <div
+      className={clsx([styles.container, collapsed && styles.colapsed])}
+      data-testid={"hiddleableInput"}
+    >
       {collapsed ? null : (
         <>
           <input
@@ -38,6 +41,7 @@ function HideableInput({
       <button
         className={clsx([globalStyles["icon-button"]])}
         onClick={handleCollapse}
+        data-testid={"collapse-button"}
       >
         {collapsed ? (
           <AccountSearch style={{ fontSize: "2em", color: "black" }} />

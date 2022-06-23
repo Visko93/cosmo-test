@@ -1,7 +1,9 @@
 /* eslint-disabled import/export */
 import { cleanup, render, RenderOptions } from "@testing-library/react";
 import React from "react";
+import { BrowserRouter, MemoryRouter, Router } from "react-router-dom";
 import { afterEach } from "vitest";
+import { UserContextProvider } from "../context/UserContext";
 
 // Depois de cada teste limpar o contexto de fn, componentes e variaveis
 afterEach(() => {
@@ -14,7 +16,11 @@ const customRender = (
 ) => {
   render(ui, {
     //caso haja algum contexto especifico que o componente tenha de acessar //durante o teste ele e exposto aqui
-    wrapper: ({ children }) => children,
+    wrapper: ({ children }) => (
+      <UserContextProvider>
+        <MemoryRouter>{children}</MemoryRouter>
+      </UserContextProvider>
+    ),
     ...options,
   });
 };
