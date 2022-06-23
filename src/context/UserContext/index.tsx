@@ -1,3 +1,4 @@
+import { Axios, AxiosError } from "axios";
 import * as React from "react";
 import { fetchGetUser, fetchUserRepositories } from "../../services/users";
 import { actionTypes } from "./actions";
@@ -56,13 +57,21 @@ function UserContextProvider({ children }: IUserContextProvider) {
         dispatch({ type: actionTypes.successUser, payload: { user: req } });
         resolve(userLogin);
       } catch (error) {
-        const errorMessage = new Error(
-          (error as Error)?.message ?? "Error fetching user"
-        );
-        dispatch({
-          type: actionTypes.error,
-          payload: { error: errorMessage },
-        });
+        if ((error as AxiosError).response?.status === 404) {
+          const errorMessage = "User Not found, try another one!";
+          dispatch({
+            type: actionTypes.error,
+            payload: { error: errorMessage },
+          });
+        } else {
+          const errorMessage = new Error(
+            (error as Error)?.message ?? "Error fetching user"
+          );
+          dispatch({
+            type: actionTypes.error,
+            payload: { error: errorMessage },
+          });
+        }
         reject(userLogin);
       } finally {
         dispatch({ type: actionTypes.search, payload: { isLoading: false } });
