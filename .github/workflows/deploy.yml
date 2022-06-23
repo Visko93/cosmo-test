@@ -25,12 +25,11 @@ jobs:
         with:
           node-version: 16
 
-      # Not using npm? Change `npm ci` to `yarn install` or `pnpm i`
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Project
-        run: yarn run build
+      - name: Install, build and test
+        run: |
+          yarn --frozen-lockfile
+          yarn build
+          yarn test
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

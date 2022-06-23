@@ -1,5 +1,7 @@
 # Github Searcher
 
+[![Build and deploy main](https://github.com/Visko93/cosmo-test/actions/workflows/main.yml/badge.svg)](https://github.com/Visko93/cosmo-test/actions/workflows/main.yml)
+
 ## Mockup and Frames - pre develepment
 
 ![search page](public/assets/readme/Search%20Page.png)![profile page](public/assets/readme/Profile%20Page.png)![Not Found page](public/assets/readme/Not-Found.png)
