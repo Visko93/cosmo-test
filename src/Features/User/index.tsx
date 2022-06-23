@@ -8,10 +8,6 @@ import type { IUser } from "./IUser.types";
 export function User() {
   const { state } = useUserContext();
 
-  React.useEffect(() => {
-    console.log(state);
-  }, [state.user]);
-
   return (
     <>
       <UserProfile data={state.user} />

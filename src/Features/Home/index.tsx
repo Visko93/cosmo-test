@@ -32,8 +32,8 @@ export function Home() {
         />
         {/* User details Container */}
         {!!state.user ? null : <UserProfile data={null} />}
-        {!!state.repos ? null : <Search noRepos />}
         <Outlet />
+        {!!state.repos ? null : <Search noRepos />}
       </>
     </Layout>
   );

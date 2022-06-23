@@ -125,6 +125,10 @@ select {
 
   max-width: 80rem;
 }
+.centerized {
+  justify-content: center;
+  align-items: center;
+}
 
 .screenreader-only {
   position: absolute;
