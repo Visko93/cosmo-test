@@ -12,7 +12,7 @@ export function NotFound() {
       className={clsx([globalStyles.container, globalStyles.centerized])}
       style={{ textAlign: "center" }}
     >
-      <h1>NOT FOUND</h1>
+      {error ? <h2>{error.toString()}</h2> : null}
     </div>
   );
 }

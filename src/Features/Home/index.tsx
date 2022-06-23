@@ -14,7 +14,7 @@ export function Home() {
 
   const handleSearch = (userLogin: string) => {
     return handlers?.fetchUser(userLogin).then((user) => {
-      navigate(`/user/${user}`);
+      navigate(`cosmo-test/user/${user}`);
       setCollapsed(true);
     });
   };
